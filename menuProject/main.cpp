@@ -9,12 +9,13 @@
 
 int main(int argc, const char * argv[]) {
 //    intitalize variables
-    char Y, N, res;
-    int choice, amount, sad;
+    char Y, N, res, choice, quit;
+    int  amount, sad;
     float cost, summit, bells, indeed, hamms, rate, tip;
 //    add values
     Y = 'y';
     N = 'n';
+    quit = 'a';
     summit = 5.50;
     bells = 6.00;
     indeed = 6.00;
@@ -37,18 +38,21 @@ int main(int argc, const char * argv[]) {
     }
     
 //    main menu
+    while (quit != 'q'){
     std::cout << "\t\tPeter's bar Menu\n\n";
     std::cout << "If you order 5 or more you get a $1 off!\n\n";
     std::cout << "1. Summit EPA\n";
     std::cout << "2. Bell's Two Hearted\n";
     std::cout << "3. Indeed LSD\n";
     std::cout << "4. Hamms\n";
+    std::cout << "press Q to quit \n";
     std::cout << "Enter your choice: \n";
     std::cin >> choice;
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
+        
     switch (choice){
-    case 1:
+    case '1':
         std::cout << "Summit EPA \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -61,7 +65,7 @@ int main(int argc, const char * argv[]) {
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
         break;
-    case 2:
+    case '2':
         std::cout << "Bell's Two Hearted \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -74,7 +78,7 @@ int main(int argc, const char * argv[]) {
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
         break;
-    case 3:
+    case '3':
         std::cout << "Indeed LSD \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -87,7 +91,7 @@ int main(int argc, const char * argv[]) {
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
         break;
-    case 4:
+    case '4':
         std::cout << "Hamms \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -98,11 +102,16 @@ int main(int argc, const char * argv[]) {
         cost = hamms * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n";
+        std::cout << "$" << tip << " would be a nice tip \n\n";
         break;
+    case 'Q':
+    case 'q':
+            quit = 'q';
+            break;
     default:
-        std::cout << "We don't have that.\n Rerun and try again \n";
+        std::cout << "We don't have that.\n";
     
+        }
     }
     return 0;
 }
