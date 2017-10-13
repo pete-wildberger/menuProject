@@ -58,6 +58,8 @@ int main() {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
+    } else {
+        std::cout << "We don't have that.\n Rerun and try again \n";
     }
     return 0;
 }
