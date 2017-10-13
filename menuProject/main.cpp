@@ -47,7 +47,8 @@ int main(int argc, const char * argv[]) {
     std::cin >> choice;
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
-    if (choice == 1){
+    switch (choice){
+    case 1:
         std::cout << "Summit EPA \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -59,7 +60,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
-    }  else if(choice == 2){
+        break;
+    case 2:
         std::cout << "Bell's Two Hearted \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -68,10 +70,11 @@ int main(int argc, const char * argv[]) {
             std::cout << "You're getting a deal! \n";
         }
         cost = bells * amount;
-       std::cout << "You owe me $" << cost << "! \n";
+        std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
-    } else if(choice == 3){
+        break;
+    case 3:
         std::cout << "Indeed LSD \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
@@ -80,14 +83,15 @@ int main(int argc, const char * argv[]) {
             std::cout << "You're getting a deal! \n";
         }
         cost = indeed * amount;
-       std::cout << "You owe me $" << cost << "! \n";
+        std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
-    } else if(choice == 4 || sad){
+        break;
+    case 4:
         std::cout << "Hamms \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
-        if(amount > 5){
+        if(amount > 5 || sad){
             hamms -= 1;
             std::cout << "You're getting a deal! \n";
         }
@@ -95,8 +99,10 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
-    } else {
+        break;
+    default:
         std::cout << "We don't have that.\n Rerun and try again \n";
+    
     }
     return 0;
 }
