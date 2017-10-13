@@ -5,10 +5,9 @@
 //  Created by Peter on 10/13/17.
 //  Copyright © 2017 Peter. All rights reserved.
 //
-//int argc, const char * argv[]
 #include <iostream>
 
-int main() {
+int main(int argc, const char * argv[]) {
 //    intitalize variables
     char Y, N, res;
     int choice, amount, sad;
@@ -22,20 +21,22 @@ int main() {
     hamms = 2.99;
     rate = 1.2;
     
-    
+//Happiness checker
     std::cout << "How are you doing?\n";
     std::cout << "Are you having a good day? (Y or N) \n";
     std::cin >> res;
-    if(putchar(tolower(res)) == Y){
-        sad = 1;
-        std::cout << "Glad to hear it! Checkout our menu: \n\n";
-    } else if (putchar(tolower(res)) == N){
+    if(tolower(res) == Y){
         sad = 0;
+        std::cout << "Glad to hear it! Checkout our menu: \n\n";
+    } else if (tolower(res) == N){
+        sad = 1;
         std::cout << "That's too bad. Checkout our menu: \n\n";
     } else {
         sad = 0;
         std::cout << "Thanks for answering sincerely. Checkout our menu: \n\n";
     }
+    
+//    main menu
     std::cout << "\t\tPeter's bar Menu\n\n";
     std::cout << "If you order 5 or more you get a $1 off!\n\n";
     std::cout << "1. Summit EPA\n";
