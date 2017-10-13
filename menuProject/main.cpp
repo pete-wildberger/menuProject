@@ -18,6 +18,7 @@ int main() {
     rate = 1.2;
     
     std::cout << "\t\tPeter's bar Menu\n\n";
+    std::cout << "If you order 5 or more you get a $1 off!\n\n";
     std::cout << "1. Summit EPA\n";
     std::cout << "2. Bell's Two Hearted\n";
     std::cout << "3. Indeed LSD\n";
@@ -30,6 +31,10 @@ int main() {
         std::cout << "Summit EPA \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
+        if(amount > 5){
+            summit -= 1;
+            std::cout << "You're getting a deal! \n";
+        }
         cost = summit * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
@@ -38,6 +43,10 @@ int main() {
         std::cout << "Bell's Two Hearted \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
+        if(amount > 5){
+            bells -= 1;
+            std::cout << "You're getting a deal! \n";
+        }
         cost = bells * amount;
        std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
@@ -46,6 +55,10 @@ int main() {
         std::cout << "Indeed LSD \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
+        if(amount > 5){
+            indeed -= 1;
+            std::cout << "You're getting a deal! \n";
+        }
         cost = indeed * amount;
        std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
@@ -54,6 +67,10 @@ int main() {
         std::cout << "Hamms \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
+        if(amount > 5){
+            hamms -= 1;
+            std::cout << "You're getting a deal! \n";
+        }
         cost = hamms * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
