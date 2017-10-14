@@ -6,6 +6,7 @@
 //  Copyright © 2017 Peter. All rights reserved.
 //
 #include <iostream>
+#include <string>
 
 int main(int argc, const char * argv[]) {
     
@@ -44,17 +45,19 @@ int main(int argc, const char * argv[]) {
 //    program main menu do-while loop
     
     do {
+    std::cout.setf(std::ios::fixed | std::ios::showpoint);
+    std::cout.precision(2);
     std::cout << "\t\tPeter's bar Menu\n\n";
     std::cout << "If you order 5 or more you get a $1 off!\n\n";
-    std::cout << "1. Summit EPA\n";
-    std::cout << "2. Bell's Two Hearted\n";
-    std::cout << "3. Indeed LSD\n";
-    std::cout << "4. Hamms\n";
+    std::cout << "1. Summit EPA $" << summit << "\n";
+    std::cout << "2. Bell's Two Hearted $" << bells << "\n";
+    std::cout << "3. Indeed LSD $" << indeed << "\n";
+    std::cout << "4. Hamms $" << hamms << "\n";
+    std::cout << "press C to change a price \n";
     std::cout << "press Q to quit \n";
     std::cout << "Enter your choice: \n";
     std::cin >> choice;
-    std::cout.setf(std::ios::fixed | std::ios::showpoint);
-    std::cout.precision(2);
+
         
 // Main menu choice switch statement
         
@@ -70,7 +73,7 @@ int main(int argc, const char * argv[]) {
         cost = summit * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n";
+        std::cout << "$" << tip << " would be a nice tip \n\n";
             totalSales += cost;
             totalTips += tip;
         break;
@@ -85,7 +88,7 @@ int main(int argc, const char * argv[]) {
         cost = bells * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n";
+        std::cout << "$" << tip << " would be a nice tip \n\n";
             totalSales += cost;
             totalTips += tip;
         break;
@@ -100,7 +103,7 @@ int main(int argc, const char * argv[]) {
         cost = indeed * amount;
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n";
+        std::cout << "$" << tip << " would be a nice tip \n\n";
             totalSales += cost;
             totalTips += tip;
         break;
@@ -119,6 +122,53 @@ int main(int argc, const char * argv[]) {
             totalSales += cost;
             totalTips += tip;
         break;
+    case 'C':
+    case 'c':
+            char choice;
+            std::cout << "Which price would you like to change\n\n";
+            std::cout << "1. Summit EPA $" << summit << "\n";
+            std::cout << "2. Bell's Two Hearted $" << bells << "\n";
+            std::cout << "3. Indeed LSD $" << indeed << "\n";
+            std::cout << "4. Hamms $" << hamms << "\n";
+            std::cout << "press Q to quit \n";
+            std::cout << "Enter your choice: \n";
+            std::cin >> choice;
+            switch (choice){
+                case '1':
+                    std::cout << "1. Summit EPA $" << summit << "\n";
+                    std::cout << "Enter the new price: \n";
+                    std::cin.width(5);
+                    std::cin >> summit;
+                    std::cout << "The new price is: "<< summit <<" \n";
+                    break;
+                case '2':
+                    std::cout << "2. Bell's Two Hearted $" << bells << "\n";
+                    std::cout << "Enter the new price: \n";
+                    std::cin.width(5);
+                    std::cin >> bells;
+                    std::cout << "The new price is: "<< bells <<" \n";
+                    break;
+                case '3':
+                    std::cout << "3. Indeed LSD $" << indeed << "\n";
+                    std::cout << "Enter the new price: \n";
+                    std::cin.width(5);
+                    std::cin >> indeed;
+                    std::cout << "The new price is: "<< indeed <<" \n";
+                    break;
+                case '4':
+                    std::cout << "4. Hamms $" << hamms << "\n";
+                    std::cout << "Enter the new price: \n";
+                    std::cin.width(5);
+                    std::cin >> hamms;
+                    std::cout << "The new price is: "<< hamms <<" \n";
+                    break;
+                case 'Q':
+                case 'q':
+                    break;
+                default:
+                    std::cout << "Try again.\n";
+                }
+            break;
     case 'Q':
     case 'q':
             quit = 'q';
