@@ -8,10 +8,12 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
+    
 //    intitalize variables
     char Y, N, res, choice, quit;
     int  amount, sad;
-    float cost, summit, bells, indeed, hamms, rate, tip;
+    float cost, summit, bells, indeed, hamms, rate, tip, totalSales, totalTips;
+    
 //    add values
     Y = 'y';
     N = 'n';
@@ -21,6 +23,8 @@ int main(int argc, const char * argv[]) {
     indeed = 6.00;
     hamms = 2.99;
     rate = 1.2;
+    totalSales = 0;
+    totalTips = 0;
     
 //Happiness checker
     std::cout << "How are you doing?\n";
@@ -64,6 +68,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
+            totalSales += cost;
+            totalTips += tip;
         break;
     case '2':
         std::cout << "Bell's Two Hearted \n";
@@ -77,6 +83,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
+            totalSales += cost;
+            totalTips += tip;
         break;
     case '3':
         std::cout << "Indeed LSD \n";
@@ -90,6 +98,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n";
+            totalSales += cost;
+            totalTips += tip;
         break;
     case '4':
         std::cout << "Hamms \n";
@@ -103,6 +113,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "You owe me $" << cost << "! \n";
         tip = (rate * cost) - cost;
         std::cout << "$" << tip << " would be a nice tip \n\n";
+            totalSales += cost;
+            totalTips += tip;
         break;
     case 'Q':
     case 'q':
@@ -113,5 +125,7 @@ int main(int argc, const char * argv[]) {
     
         }
     }
+    std::cout << "We sold $" << totalSales << " today!\n";
+    std::cout << "We made $" << totalTips << " in tips today!\n";
     return 0;
 }
