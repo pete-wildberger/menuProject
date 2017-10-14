@@ -182,5 +182,6 @@ int main(int argc, const char * argv[]) {
 //    display running totals
     std::cout << "We sold $" << totalSales << " today!\n";
     std::cout << "We made $" << totalTips << " in tips today!\n";
+//    end program
     return 0;
 }
