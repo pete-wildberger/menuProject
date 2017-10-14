@@ -45,8 +45,10 @@ int main(int argc, const char * argv[]) {
 //    program main menu do-while loop
     
     do {
+//        formatting
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
+//        main menu
     std::cout << "\t\tPeter's bar Menu\n\n";
     std::cout << "If you order 5 or more you get a $1 off!\n\n";
     std::cout << "1. Summit EPA $" << summit << "\n";
