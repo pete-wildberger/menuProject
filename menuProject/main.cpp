@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     totalSales = 0;
     totalTips = 0;
     
-//Happiness checker
+//    Happiness checker
     std::cout << "How are you doing?\n";
     std::cout << "Are you having a good day? (Y or N) \n";
     std::cin >> res;
@@ -41,8 +41,9 @@ int main(int argc, const char * argv[]) {
         std::cout << "Thanks for answering sincerely. Checkout our menu: \n\n";
     }
     
-//    main menu
-    while (quit != 'q'){
+//    program main menu do-while loop
+    
+    do {
     std::cout << "\t\tPeter's bar Menu\n\n";
     std::cout << "If you order 5 or more you get a $1 off!\n\n";
     std::cout << "1. Summit EPA\n";
@@ -54,6 +55,8 @@ int main(int argc, const char * argv[]) {
     std::cin >> choice;
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
+        
+// Main menu choice switch statement
         
     switch (choice){
     case '1':
@@ -124,7 +127,9 @@ int main(int argc, const char * argv[]) {
         std::cout << "We don't have that.\n";
     
         }
-    }
+    } while (quit != 'q');
+    
+//    display running totals
     std::cout << "We sold $" << totalSales << " today!\n";
     std::cout << "We made $" << totalTips << " in tips today!\n";
     return 0;
