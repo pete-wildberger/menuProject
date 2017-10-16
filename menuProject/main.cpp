@@ -18,12 +18,13 @@ int main(int argc, const char * argv[]) {
 //    intitalize variables
     char Y, N, res, choice, quit;
     int  amount, sad;
-    float cost, summit, bells, indeed, hamms, rate, totalSales, totalTips;
+    float cost, summit, bells, indeed, hamms, beer, rate, totalSales, totalTips;
     
 //    add values
     Y = 'y';
     N = 'n';
     quit = 'a';
+
 //    beer prices
     summit = 5.50;
     bells = 6.00;
@@ -33,6 +34,7 @@ int main(int argc, const char * argv[]) {
     rate = 1.2; //20% tip rate
     totalSales = 0;
     totalTips = 0;
+
     
 //    Happiness checker
     std::cout << "How are you doing?\n";
@@ -52,6 +54,7 @@ int main(int argc, const char * argv[]) {
 //    program main menu do-while loop
     
     do {
+    beer = 0;
 //        formatting
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
@@ -73,39 +76,24 @@ int main(int argc, const char * argv[]) {
     switch (choice){
     case '1':
         std::cout << "Summit EPA \n";
-        std::cout << "How many would you like? \n";
-        std::cin >> amount;
-            cost = priceCost(summit, amount, sad);
-            totalSales = totalUpdate(cost, totalSales);
-            totalTips = tipUpdate(cost, rate, totalTips);
+            beer = summit;
         break;
     case '2':
         std::cout << "Bell's Two Hearted \n";
-        std::cout << "How many would you like? \n";
-        std::cin >> amount;
-            cost = priceCost(bells, amount, sad);
-            totalSales = totalUpdate(cost, totalSales);
-            totalTips = tipUpdate(cost, rate, totalTips);
+            beer = bells;
         break;
     case '3':
         std::cout << "Indeed LSD \n";
-        std::cout << "How many would you like? \n";
-        std::cin >> amount;
-            cost = priceCost(indeed, amount, sad);
-            totalSales = totalUpdate(cost, totalSales);
-            totalTips = tipUpdate(cost, rate, totalTips);
+            beer = indeed;
         break;
     case '4':
         std::cout << "Hamms \n";
-        std::cout << "How many would you like? \n";
-        std::cin >> amount;
-            cost = priceCost(hamms, amount, sad);
-            totalSales = totalUpdate(cost, totalSales);
-            totalTips = tipUpdate(cost, rate, totalTips);
+            beer = hamms;
         break;
     case 'C':
     case 'c':
             char choice;
+            quit = 'c';
             std::cout << "Which price would you like to change\n\n";
             std::cout << "1. Summit EPA $" << summit << "\n";
             std::cout << "2. Bell's Two Hearted $" << bells << "\n";
@@ -157,6 +145,13 @@ int main(int argc, const char * argv[]) {
     default:
         std::cout << "We don't have that.\n";
     
+        }
+        if(beer){
+            std::cout << "How many would you like? \n";
+            std::cin >> amount;
+            cost = priceCost(beer, amount, sad);
+            totalSales = totalUpdate(cost, totalSales);
+            totalTips = tipUpdate(cost, rate, totalTips);
         }
     } while (quit != 'q');
     
