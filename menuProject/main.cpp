@@ -6,7 +6,6 @@
 //  Copyright © 2017 Peter. All rights reserved.
 //
 #include <iostream>
-#include <string>
 
 //function prototypes
 float priceCost(float, int, int);
