@@ -8,22 +8,29 @@
 #include <iostream>
 #include <string>
 
+//function prototypes
+float priceCost(float, int, int);
+float totalUpdate(float, float);
+float tipUpdate(float, float, float);
+
 int main(int argc, const char * argv[]) {
     
 //    intitalize variables
     char Y, N, res, choice, quit;
     int  amount, sad;
-    float cost, summit, bells, indeed, hamms, rate, tip, totalSales, totalTips;
+    float cost, summit, bells, indeed, hamms, rate, totalSales, totalTips;
     
 //    add values
     Y = 'y';
     N = 'n';
     quit = 'a';
+//    beer prices
     summit = 5.50;
     bells = 6.00;
     indeed = 6.00;
     hamms = 2.99;
-    rate = 1.2;
+    
+    rate = 1.2; //20% tip rate
     totalSales = 0;
     totalTips = 0;
     
@@ -68,61 +75,33 @@ int main(int argc, const char * argv[]) {
         std::cout << "Summit EPA \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
-        if(amount > 5 || sad){
-            summit -= 1;
-            std::cout << "You're getting a deal! \n";
-        }
-        cost = summit * amount;
-        std::cout << "You owe me $" << cost << "! \n";
-        tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n\n";
-            totalSales += cost;
-            totalTips += tip;
+            cost = priceCost(summit, amount, sad);
+            totalSales = totalUpdate(cost, totalSales);
+            totalTips = tipUpdate(cost, rate, totalTips);
         break;
     case '2':
         std::cout << "Bell's Two Hearted \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
-        if(amount > 5 || sad){
-            bells -= 1;
-            std::cout << "You're getting a deal! \n";
-        }
-        cost = bells * amount;
-        std::cout << "You owe me $" << cost << "! \n";
-        tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n\n";
-            totalSales += cost;
-            totalTips += tip;
+            cost = priceCost(bells, amount, sad);
+            totalSales = totalUpdate(cost, totalSales);
+            totalTips = tipUpdate(cost, rate, totalTips);
         break;
     case '3':
         std::cout << "Indeed LSD \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
-        if(amount > 5 || sad){
-            indeed -= 1;
-            std::cout << "You're getting a deal! \n";
-        }
-        cost = indeed * amount;
-        std::cout << "You owe me $" << cost << "! \n";
-        tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n\n";
-            totalSales += cost;
-            totalTips += tip;
+            cost = priceCost(indeed, amount, sad);
+            totalSales = totalUpdate(cost, totalSales);
+            totalTips = tipUpdate(cost, rate, totalTips);
         break;
     case '4':
         std::cout << "Hamms \n";
         std::cout << "How many would you like? \n";
         std::cin >> amount;
-        if(amount > 5 || sad){
-            hamms -= 1;
-            std::cout << "You're getting a deal! \n";
-        }
-        cost = hamms * amount;
-        std::cout << "You owe me $" << cost << "! \n";
-        tip = (rate * cost) - cost;
-        std::cout << "$" << tip << " would be a nice tip \n\n";
-            totalSales += cost;
-            totalTips += tip;
+            cost = priceCost(hamms, amount, sad);
+            totalSales = totalUpdate(cost, totalSales);
+            totalTips = tipUpdate(cost, rate, totalTips);
         break;
     case 'C':
     case 'c':
@@ -187,3 +166,27 @@ int main(int argc, const char * argv[]) {
 //    end program
     return 0;
 }
+
+// does math to calculate price and tip. takes the beer type and amount as arguements
+float priceCost(float beer, int amount, int sad){
+    float cost;
+    if(amount > 5 || sad){
+        beer -= 1;
+        std::cout << "You're getting a deal! \n";
+    }
+    cost = beer * amount;
+    std::cout << "You owe me $" << cost << "! \n";
+    return cost;
+    }
+// does math to update the total of all beer sold
+float totalUpdate(float cost, float total){
+    return total += cost;
+}
+// does math to update the total of the tips
+float tipUpdate(float cost, float rate, float total){
+    float tip;
+    tip = (rate * cost) - cost;
+    std::cout << "$" << tip << " would be a nice tip \n\n";
+    return total += tip;
+}
+
