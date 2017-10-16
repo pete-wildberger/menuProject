@@ -15,13 +15,16 @@ float tipUpdate(float, float, float);
 int main(int argc, const char * argv[]) {
     
 //    intitalize variables
-    char Y, N, res, choice, quit;
-    int  amount, sad;
-    float cost, summit, bells, indeed, hamms, beer, rate, totalSales, totalTips;
+//    constants
+    const float rate = 1.2; //20% tip rate
+    const char Y = 'y', N = 'n';
+//    globals
+    char res, choice, quit;
+    int sad;
+    float summit, bells, indeed, hamms, totalSales, totalTips;
     
 //    add values
-    Y = 'y';
-    N = 'n';
+
     quit = 'a';
 
 //    beer prices
@@ -29,8 +32,7 @@ int main(int argc, const char * argv[]) {
     bells = 6.00;
     indeed = 6.00;
     hamms = 2.99;
-    
-    rate = 1.2; //20% tip rate
+
     totalSales = 0;
     totalTips = 0;
 
@@ -53,7 +55,9 @@ int main(int argc, const char * argv[]) {
 //    program main menu do-while loop
     
     do {
-    beer = 0;
+//        local
+    int beer = 0, amount = 0;
+    float cost;
 //        formatting
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
