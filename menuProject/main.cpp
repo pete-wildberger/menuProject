@@ -21,8 +21,9 @@ public:
 };
 
 //function prototypes
-
+char mainMenu(class Item[]);
 float priceCost(class Item[], int, int, int);
+void displayTotals(class Item[], float, float);
 
 // inline functions
 
@@ -46,7 +47,7 @@ int main(int argc, const char * argv[]) {
     const float rate = 1.2; //20% tip rate
     const char Y = 'y', N = 'n';
 //    globals
-    char res, choice, quit;
+    char res, quit;
     int sad;
     float totalSales, totalTips;
     
@@ -95,7 +96,9 @@ int main(int argc, const char * argv[]) {
 //    program main menu do-while loop
     
     do {
+        
 //        local
+        char choice;
     int beer = -1, amount = 0;
     float cost;
 
@@ -103,17 +106,7 @@ int main(int argc, const char * argv[]) {
     std::cout.setf(std::ios::fixed | std::ios::showpoint);
     std::cout.precision(2);
 //        main menu
-    std::cout << "\t\tPeter's bar Menu\n\n";
-    std::cout << "If you order 5 or more you get a $1 off!\n\n";
-    std::cout << "1. Summit EPA $" << Summit.price << "\n";
-    std::cout << "2. Bell's Two Hearted $" << Bells.price << "\n";
-    std::cout << "3. Indeed LSD $" << Indeed.price << "\n";
-    std::cout << "4. Hamms $" << Hamms.price << "\n";
-    std::cout << "press C to change a price \n";
-    std::cout << "press Q to quit \n";
-    std::cout << "Enter your choice: \n";
-    std::cin >> choice;
-
+        choice = mainMenu(items);
         
 // Main menu choice switch statement
         
@@ -204,26 +197,32 @@ int main(int argc, const char * argv[]) {
     } while (quit != 'q');
     
 //    display running totals
+    displayTotals(items, totalSales, totalTips);
 
-    std::cout.setf(std::ios::fixed | std::ios::showpoint | std::ios::left);
-    std::cout << "We sold $" << totalSales << " today!\n";
-    std::cout << std::endl;
-    std::cout << std::setw(18) << "Item";
-    std::cout << std::setw(18) << "Sold";
-    std::cout << std::setw(18) << "Total" << std::endl;
-    std::cout << "---------------------------------------\n";
-// loop to display inventory totals
-    for(int i = 0; i < sizeof(items)/sizeof(items[0]); i++){
-        std::cout << std::setw(18) << items[i].name;
-        std::cout << std::setw(18) << items[i].inventory;
-        std::cout << std::setw(18) << items[i].itemTotal << std::endl;
-    }
-    std::cout << "We also made $" << totalTips << " in tips today!\n";
 //    end program
     return 0;
 }
 
+
+
 //function definitions
+
+// displays the main menu
+char mainMenu(class Item beer[]){
+    char choice;
+    std::cout << "\t\tPeter's bar Menu\n\n";
+    std::cout << "If you order 5 or more you get a $1 off!\n\n";
+    for (int i = 0; i < 4; i++){
+    std::cout << i + 1 << ". " << beer[i].name << " $" << beer[i].price << "\n";
+    }
+    std::cout << "press C to change a price \n";
+    std::cout << "press Q to quit \n";
+    std::cout << "Enter your choice: \n";
+    std::cin >> choice;
+
+    return choice;
+};
+
 // does math to calculate price and tip. takes the beer type and amount as arguements
 float priceCost(class Item beer[], int index, int amount, int sad){
     float cost;
@@ -237,4 +236,23 @@ float priceCost(class Item beer[], int index, int amount, int sad){
     std::cout << "You owe me $" << cost << "! \n";
     return cost;
     }
+
+// display running totals at the end of the program
+void displayTotals(class Item beer[], float total, float tipTotal) {
+    
+    std::cout.setf(std::ios::fixed | std::ios::showpoint | std::ios::left);
+    std::cout << "We sold $" << total << " today!\n";
+    std::cout << std::endl;
+    std::cout << std::setw(18) << "Item";
+    std::cout << std::setw(18) << "Sold";
+    std::cout << std::setw(18) << "Total" << std::endl;
+    std::cout << "---------------------------------------\n";
+    // loop to display inventory totals
+    for(int i = 0; i < 4; i++){
+        std::cout << std::setw(18) << beer[i].name;
+        std::cout << std::setw(18) << beer[i].inventory;
+        std::cout << std::setw(18) << beer[i].itemTotal << std::endl;
+    }
+    std::cout << "We also made $" << tipTotal << " in tips today!\n";
+}
 
