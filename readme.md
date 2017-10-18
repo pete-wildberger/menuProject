@@ -7,4 +7,8 @@ To run download the file and open the menuProject directory in Terminal.  You ca
 ```
 g++ main.cpp -o main
 ```
-'g++'' is the compile command.  'main.cpp' is the c++ source file. '-o' is an O not a zero.  'main' is your executable file. 
+'g++'' is the compile command.  'main.cpp' is the c++ source file. '-o' is an O not a zero.  'main' is your executable file.
+To then open the program in terminal just type:
+```
+./main
+``` 
