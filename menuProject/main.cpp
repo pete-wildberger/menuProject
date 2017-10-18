@@ -13,11 +13,10 @@
 class Item
 {
 public:
-    int inventory = 0;
+    int inventory;
     std::string name;
     float price;
-    float itemTotal = 0;
-
+    float itemTotal;
 };
 
 //function prototypes
@@ -73,6 +72,12 @@ int main(int argc, const char * argv[]) {
     Hamms.name = "Hamms";
     
     Item items[4] = {Summit, Bells, Indeed, Hamms};
+    
+//    class variable initialization of non-static data member
+    for(int i = 0; i < sizeof(items)/sizeof(items[0]); i++){
+        items[i].inventory = 0;
+        items[i].itemTotal = 0;
+    }
     
     totalSales = 0;
     totalTips = 0;
