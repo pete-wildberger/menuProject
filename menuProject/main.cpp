@@ -21,10 +21,24 @@ public:
 };
 
 //function prototypes
-float priceCost(class Item[], int, int, int);
-float totalUpdate(float, float);
-float tipUpdate(float, float, float);
 
+float priceCost(class Item[], int, int, int);
+
+// inline functions
+
+// does math to update the total of all beer sold
+inline float totalUpdate(float cost, float total){
+    return total += cost;
+}
+// does math to update the total of the tips
+inline float tipUpdate(float cost, float rate, float total){
+    float tip;
+    tip = (rate * cost) - cost;
+    std::cout << "$" << tip << " would be a nice tip \n\n";
+    return total += tip;
+}
+
+// main
 int main(int argc, const char * argv[]) {
     
 //    intitalize variables
@@ -223,15 +237,4 @@ float priceCost(class Item beer[], int index, int amount, int sad){
     std::cout << "You owe me $" << cost << "! \n";
     return cost;
     }
-// does math to update the total of all beer sold
-float totalUpdate(float cost, float total){
-    return total += cost;
-}
-// does math to update the total of the tips
-float tipUpdate(float cost, float rate, float total){
-    float tip;
-    tip = (rate * cost) - cost;
-    std::cout << "$" << tip << " would be a nice tip \n\n";
-    return total += tip;
-}
 
