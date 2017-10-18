@@ -6,18 +6,24 @@
 //  Copyright © 2017 Peter. All rights reserved.
 //
 #include <iostream>
+#include <iomanip>
+#include <string>
 
-//function prototypes
-float priceCost(float, int, int);
-float totalUpdate(float, float);
-float tipUpdate(float, float, float);
-
+// defin bar item class object
 class Item
 {
 public:
     int inventory = 0;
+    std::string name;
     float price;
+    float itemTotal = 0;
+
 };
+
+//function prototypes
+float priceCost(class Item[], int, int, int);
+float totalUpdate(float, float);
+float tipUpdate(float, float, float);
 
 int main(int argc, const char * argv[]) {
     
@@ -37,16 +43,22 @@ int main(int argc, const char * argv[]) {
 //    beer prices
     Item Summit;
     Summit.price = 5.50;
+    Summit.name = "Summit";
     
     Item Bells;
     Bells.price = 6.00;
+    Bells.name = "Bells Two Hearted";
     
     Item Indeed;
     Indeed.price = 6.00;
+    Indeed.name = "Indeed LSD";
     
     Item Hamms;
     Hamms.price = 2.99;
-
+    Hamms.name = "Hamms";
+    
+    Item items[4] = {Summit, Bells, Indeed, Hamms};
+    
     totalSales = 0;
     totalTips = 0;
 
@@ -70,7 +82,7 @@ int main(int argc, const char * argv[]) {
     
     do {
 //        local
-    int beer = 0, amount = 0;
+    int beer = -1, amount = 0;
     float cost;
 
 //        formatting
@@ -94,22 +106,22 @@ int main(int argc, const char * argv[]) {
     switch (choice){
     case '1':
         std::cout << "Summit EPA \n";
-            beer = Summit.price;
+            beer = 0;
            
         break;
     case '2':
         std::cout << "Bell's Two Hearted \n";
-            beer = Bells.price;
+            beer = 1;
          
         break;
     case '3':
         std::cout << "Indeed LSD \n";
-            beer = Indeed.price;
+            beer = 2;
     
         break;
     case '4':
         std::cout << "Hamms \n";
-            beer = Hamms.price;
+            beer = 3;
           
         break;
     case 'C':
@@ -168,30 +180,46 @@ int main(int argc, const char * argv[]) {
         std::cout << "We don't have that.\n";
     
         }
-        if(beer){
+        if(beer > -1){
             std::cout << "How many would you like? \n";
             std::cin >> amount;
-            cost = priceCost(beer, amount, sad);
+            cost = priceCost(items, beer, amount, sad);
             totalSales = totalUpdate(cost, totalSales);
             totalTips = tipUpdate(cost, rate, totalTips);
         }
     } while (quit != 'q');
     
 //    display running totals
+
+    std::cout.setf(std::ios::fixed | std::ios::showpoint | std::ios::left);
     std::cout << "We sold $" << totalSales << " today!\n";
-    std::cout << "We made $" << totalTips << " in tips today!\n";
+    std::cout << std::endl;
+    std::cout << std::setw(18) << "Item";
+    std::cout << std::setw(18) << "Sold";
+    std::cout << std::setw(18) << "Total" << std::endl;
+    std::cout << "---------------------------------------\n";
+// loop to display inventory totals
+    for(int i = 0; i < sizeof(items)/sizeof(items[0]); i++){
+        std::cout << std::setw(18) << items[i].name;
+        std::cout << std::setw(18) << items[i].inventory;
+        std::cout << std::setw(18) << items[i].itemTotal << std::endl;
+    }
+    std::cout << "We also made $" << totalTips << " in tips today!\n";
 //    end program
     return 0;
 }
 
+//function definitions
 // does math to calculate price and tip. takes the beer type and amount as arguements
-float priceCost(float beer, int amount, int sad){
+float priceCost(class Item beer[], int index, int amount, int sad){
     float cost;
     if(amount > 5 || sad){
-        beer -= 1;
+        beer[index].price -= 1;
         std::cout << "You're getting a deal! \n";
     }
-    cost = beer * amount;
+    cost = beer[index].price * amount;
+    beer[index].inventory += amount;
+    beer[index].itemTotal += cost;
     std::cout << "You owe me $" << cost << "! \n";
     return cost;
     }
