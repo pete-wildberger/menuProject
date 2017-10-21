@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "Header.h"
 
 // defin bar item class object
 class Item
@@ -18,11 +19,6 @@ public:
     float price;
     float itemTotal;
 };
-
-//function prototypes
-char mainMenu(class Item[], int);
-float priceCost(class Item[], int, int, int);
-void displayTotals(class Item[], int, float, float);
 
 // inline functions
 
